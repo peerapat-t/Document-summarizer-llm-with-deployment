@@ -30,13 +30,19 @@ with tab1:
     # 0. Set API
     st.header("0. Input API keys")
     user_input = st.text_input('Enter your text here')
-    os.environ["OPENAI_API_KEY"] = user_input
-    openai.api_key = os.environ['OPENAI_API_KEY']
-    llm3 = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo-1106")
-    llm4 = ChatOpenAI(temperature=0, model_name="gpt-4-1106-preview")
 
     if user_input:
+        # Only set the API key and initialize models if the user has entered their API key
+        os.environ["OPENAI_API_KEY"] = user_input
+        openai.api_key = os.environ['OPENAI_API_KEY']
+        llm3 = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo-1106")
+        llm4 = ChatOpenAI(temperature=0, model_name="gpt-4-1106-preview")
+
         st.success(f"✅ You API: **{user_input}**")
+    else:
+        # If the user has not entered their API key, display a message asking them to do so
+        st.warning("Please enter your API key to proceed.")
+
     st.markdown("---")
 
     # 1. Upload file
