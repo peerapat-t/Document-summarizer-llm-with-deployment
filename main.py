@@ -42,13 +42,11 @@ with tab1:
     # 1. Upload file
     st.header("1. Upload PDF file")
     uploaded_file = st.file_uploader("*Note: Choose only 1 file to upload, larger files will charges more credit.*", type=['pdf'], accept_multiple_files=False)
-
-    with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False) as temp_pdf:
-        temp_pdf.write(uploaded_file.read())
-        temp_pdf.flush()
-        temp_pdf_path = temp_pdf.name
-
-    if temp_pdf_path:
+    if uploaded_file:
+        with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False) as temp_pdf:
+            temp_pdf.write(uploaded_file.read())
+            temp_pdf.flush()
+            temp_pdf_path = temp_pdf.name
         st.success(f"✅ You selected: **{temp_pdf_path}**")
     st.markdown("---")
 
