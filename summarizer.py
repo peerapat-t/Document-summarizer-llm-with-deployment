@@ -1,6 +1,6 @@
-
+from langchain.chains import LLMChain
 from langchain.chains.summarize import load_summarize_chain
-from langchain.prompts import PromptTemplate
+from langchain.prompts import PromptTemplate, ChatPromptTemplate
 
 
 # Map reduce
@@ -51,7 +51,6 @@ refine_template = (
 refine_prompt = PromptTemplate.from_template(refine_template)
 prompt = PromptTemplate.from_template(prompt_template)
 
-
 def refine_result(docs, model):
     chain = load_summarize_chain(llm=model, chain_type="refine",
                                  question_prompt=prompt, refine_prompt=refine_prompt,
@@ -59,4 +58,18 @@ def refine_result(docs, model):
                                  input_key="input_documents", output_key="output_text",
                                  )
     output = chain({"input_documents": docs}, return_only_outputs=True)
-    return output
+    return output.get("output_text", "")
+
+# Translate
+
+template_string = """Translate the text to Thai\
+that is delimited by triple backticks.\
+Do not add backticks in the result.\
+```{text}```
+"""
+prompt_template = ChatPromptTemplate.from_template(template_string)
+
+def translate_to_thai(docs, model):
+    prompt = prompt_template.format_messages(text=docs)
+    output = model(prompt)
+    return output.content
