@@ -179,7 +179,7 @@ with tab2:
             time.sleep(0.1)
             progress_bar.progress(percent_complete + 1)
 
-        docs = word_loader(temp_pdf_path)
+        docs = word_loader(temp_docx_path)
 
         if messge_type_input == 'Bullet Points':
             if chain_choice_input == 'map-reduce':
@@ -213,7 +213,6 @@ with tab2:
 
         st.success(sum1)
         st.success(sum2)
-
 
 ########################## Tab 3 ##########################
         
@@ -261,7 +260,7 @@ with tab3:
             time.sleep(0.1)
             progress_bar.progress(percent_complete + 1)
 
-        docs = word_loader(temp_pdf_path)
+        docs = powerpoint_loader(temp_pptx_path)
 
         if messge_type_input == 'Bullet Points':
             if chain_choice_input == 'map-reduce':
