@@ -7,8 +7,8 @@ import os
 
 
 def pdf_loader(pdf_path):
-    loader = PyPDFLoader(pdf_path, extract_images=True)
-    # loader = PyPDFLoader(pdf_path)
+    # loader = PyPDFLoader(pdf_path, extract_images=True)
+    loader = PyPDFLoader(pdf_path)
     pages = loader.load()
 
     text = ''
