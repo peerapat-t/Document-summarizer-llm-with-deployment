@@ -3,70 +3,96 @@ from langchain.chains.summarize import load_summarize_chain
 from langchain.prompts import PromptTemplate, ChatPromptTemplate
 
 
-# Map reduce
+########################## Prompt ##########################
+
 map_prompt = """
 Write a concise summary of the following:
 "{text}"
 CONCISE SUMMARY:
 """
 
-combine_prompt = """
-Write a concise summary of the following text delimited by triple backquotes.
-Return your response in bullet points which covers the key points of the text.
-It should be only 3-5 bullet points so pick only important points.
+combine_bullet_prompt = """
+Your job is to summarize the text enclosed within triple backquotes.
+The summary should be presented as bullet points, adhering to the criteria below:
+- Limit the summary to 3-5 bullet points to ensure it is succinct yet comprehensive.
+- Focus on distilling the essence of the text, highlighting only its most critical aspects.
+- Each bullet point should encapsulate a significant theme or key point derived from the text.
+- Remember to extract and condense the primary information, offering a clear and focused overview.
 ```{text}```
 BULLET POINT SUMMARY:
 """
 
-map_prompt_template = PromptTemplate(template=map_prompt, input_variables=["text"])
-combine_prompt_template = PromptTemplate(template=combine_prompt, input_variables=["text"])
+combine_paragraph_prompt = """
+Your job is to summarize the text enclosed within triple backquotes.
+The summary should be written in a singal paragraph, adhering to the criteria below:
+- Keep the summary concise, aiming for a length that captures the essence of the text without exceeding a few sentences.
+- Focus on identifying and integrating the text's most critical aspects, distilling its primary themes and key points.
+- Ensure the summary is clear and focused, providing a comprehensive overview by weaving together the significant elements of the text.
+- Remember to extract and condense the primary information, offering a seamless narrative that reflects the core message of the text.
+```{text}```
+PARAGRAPH SUMMARY:
+"""
 
-def map_reduce_result(docs, model):
+map_prompt_template = PromptTemplate(template=map_prompt, input_variables=["text"])
+combine_bullet_prompt_template = PromptTemplate(template=combine_bullet_prompt, input_variables=["text"])
+combine_paragraph_prompt_template = PromptTemplate(template=combine_paragraph_prompt, input_variables=["text"])
+
+########################## Map-reduce ##########################
+
+
+def map_reduce_bullet(docs, model):
     summary_chain = load_summarize_chain(llm=model, chain_type='map_reduce',
-                                         map_prompt=map_prompt_template,combine_prompt=combine_prompt_template,
+                                         map_prompt=map_prompt_template,combine_prompt=combine_bullet_prompt_template,
+                                         # verbose=True
+                                         )
+    output = summary_chain.run(docs)
+    return output
+
+def map_reduce_paragraph(docs, model):
+    summary_chain = load_summarize_chain(llm=model, chain_type='map_reduce',
+                                         map_prompt=map_prompt_template,combine_prompt=combine_paragraph_prompt_template,
                                          # verbose=True
                                          )
     output = summary_chain.run(docs)
     return output
 
 
-# Refine
-prompt_template = """Write a concise summary of the following:
-{text}
-CONCISE SUMMARY:"""
+########################## Refine ##########################
 
-refine_template = (
-    "Your job is to produce a final summary\n"
-    "We have provided an existing summary up to a certain point: {existing_answer}\n"
-    "We have the opportunity to refine the existing summary"
-    "(only if needed) with some more context below.\n"
-    "------------\n"
-    "{text}\n"
-    "------------\n"
-    "Return your response in bullet points which covers the key points of the text."
-    "It should be only 3-5 bullet points so pick only important points."
-    "If the context isn't useful, return the original summary."
-)
-
-refine_prompt = PromptTemplate.from_template(refine_template)
-prompt = PromptTemplate.from_template(prompt_template)
-
-def refine_result(docs, model):
+def refine_bullet(docs, model):
     chain = load_summarize_chain(llm=model, chain_type="refine",
-                                 question_prompt=prompt, refine_prompt=refine_prompt,
+                                 question_prompt=map_prompt_template,
+                                 refine_prompt=combine_bullet_prompt_template,
                                  return_intermediate_steps=False,
                                  input_key="input_documents", output_key="output_text",
                                  )
     output = chain({"input_documents": docs}, return_only_outputs=True)
     return output.get("output_text", "")
 
-# Translate
 
-template_string = """Translate the text to Thai\
-that is delimited by triple backticks.\
-Do not add backticks in the result.\
+def refine_paragraph(docs, model):
+    chain = load_summarize_chain(llm=model, chain_type="refine",
+                                 question_prompt=map_prompt_template,
+                                 refine_prompt=combine_paragraph_prompt_template,
+                                 return_intermediate_steps=False,
+                                 input_key="input_documents", output_key="output_text",
+                                 )
+    output = chain({"input_documents": docs}, return_only_outputs=True)
+    return output.get("output_text", "")
+
+
+
+########################## Translate ##########################
+
+template_string = """
+"Translate the text found between the triple backticks below into Thai.
+Make sure to keep the translation natural and fluent, omitting the backticks in your response.
+Here is the text that needs translation:
 ```{text}```
+Please focus on translating just the section within the triple backticks,
+and let everything else remain in English.
 """
+
 prompt_template = ChatPromptTemplate.from_template(template_string)
 
 def translate_to_thai(docs, model):

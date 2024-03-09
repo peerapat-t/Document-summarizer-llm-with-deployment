@@ -7,8 +7,8 @@ import os
 
 
 def pdf_loader(pdf_path):
-    # loader = PyPDFLoader(pdf_path, extract_images=True)
-    loader = PyPDFLoader(pdf_path)
+    loader = PyPDFLoader(pdf_path, extract_images=True)
+    # loader = PyPDFLoader(pdf_path)
     pages = loader.load()
 
     text = ''
@@ -17,7 +17,6 @@ def pdf_loader(pdf_path):
     text = text.replace('\t', ' ')
     text_splitter = RecursiveCharacterTextSplitter(separators=["\n\n", "\n"], chunk_size=10000, chunk_overlap=1000)
     docs = text_splitter.create_documents([text])
-
     return docs
 
 
@@ -31,7 +30,6 @@ def word_loader(word_path):
     text = text.replace('\t', ' ')
     text_splitter = RecursiveCharacterTextSplitter(separators=["\n\n", "\n"], chunk_size=10000, chunk_overlap=1000)
     docs = text_splitter.create_documents([text])
-
     return docs
 
 
@@ -45,7 +43,6 @@ def powerpoint_loader(powerpoint_path):
     text = text.replace('\t', ' ')
     text_splitter = RecursiveCharacterTextSplitter(separators=["\n\n", "\n"], chunk_size=10000, chunk_overlap=1000)
     docs = text_splitter.create_documents([text])
-
     return docs
 
 
@@ -59,7 +56,6 @@ def web_loader(web_url):
     text = text.replace('\t', ' ')
     text_splitter = RecursiveCharacterTextSplitter(separators=["\n\n", "\n"], chunk_size=10000, chunk_overlap=1000)
     docs = text_splitter.create_documents([text])
-
     return docs
 
 
@@ -90,12 +86,10 @@ def youtube_loader(yt_url):
     text = text.replace('\t', ' ')
     text_splitter = RecursiveCharacterTextSplitter(separators=["\n\n", "\n"], chunk_size=10000, chunk_overlap=1000)
     docs = text_splitter.create_documents([text])
-
     return docs
 
 
 def text_loader(text):
     text_splitter = RecursiveCharacterTextSplitter(separators=["\n\n", "\n"], chunk_size=10000, chunk_overlap=1000)
     docs = text_splitter.create_documents([text])
-
     return docs
