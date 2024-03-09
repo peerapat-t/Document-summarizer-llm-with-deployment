@@ -56,7 +56,7 @@ tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["📚 PDF", "📃 Word", "📊 Pow
 with tab1:
 
     # Upload file
-    st.header("Upload PDF file")
+    st.header("📚 Upload PDF file")
 
     uploaded_file_input = st.file_uploader("*Note: Choose only 1 file to upload, larger files will charges more credit.*", 
                                            type=['pdf'], 
@@ -138,7 +138,7 @@ with tab1:
 with tab2:
 
     # Upload file
-    st.header("Upload PDF file")
+    st.header("📃 Upload WORD file")
 
     uploaded_file_input = st.file_uploader("*Note: Choose only 1 file to upload, larger files will charges more credit.*", 
                                            type=['docx'], 
