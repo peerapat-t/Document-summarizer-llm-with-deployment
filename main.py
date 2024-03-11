@@ -440,7 +440,7 @@ with tab6:
 
     # Upload file
     st.header("✍️ Enter JUST TEXT")
-    freetext_input = st.text_area('*Note: Enter free text, larger text will charges more credit.*', height=400)
+    freetext_input = st.text_area('*Note: Enter free text, larger text will charges more credit.*', height=300)
     if freetext_input:
         st.success(f"✅ You entered: **free text**")
     st.markdown("---")
