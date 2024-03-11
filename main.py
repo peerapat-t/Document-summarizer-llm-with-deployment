@@ -442,7 +442,7 @@ with tab6:
     st.header("✍️ Enter JUST TEXT")
     freetext_input = st.text_area('*Note: Enter free text, larger text will charges more credit.*', height=400)
     if freetext_input:
-        st.success(f"✔️ You entered: **free text**")
+        st.success(f"✅ You entered: **free text**")
     st.markdown("---")
 
     # Select message style
@@ -457,7 +457,7 @@ with tab6:
                                    ('Paragraph', 'Bullet Points'), key='message_type_6')
 
     if messge_type_input:
-        st.success(f"✔️ Message type: **{messge_type_input}**")
+        st.success(f"✅ Message type: **{messge_type_input}**")
     st.markdown("---")
 
     # Process
