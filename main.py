@@ -50,10 +50,10 @@ if chain_choice_input:
 st.sidebar.title("Need help?")
 st.sidebar.info("If you have any questions, please contact **Peerapat.t.**")
 
+########################## Tab menu ##########################
 
-st.header("Document Summarizer")
+st.title("Document Summarizer")
 tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["📚 PDF", "📃 Word", "📊 Powerpoint", "🌍 Website", "📺 Youtube", "✍️ Just text"])
-
 
 ########################## Tab 1 ##########################
 
