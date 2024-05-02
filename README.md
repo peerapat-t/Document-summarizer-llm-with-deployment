@@ -1,2 +1,9 @@
-You can try this app here:
-https://document-summarize-llm-with-deployment-hou6rr9kv44webs5ejktjv.streamlit.app
+Methodology:
+
+1. OpenAI API
+2. Streamlit
+3. Map reduce
+4. Recall
+
+
+You can try it here: https://document-summarize-llm-with-deployment-hou6rr9kv44webs5ejktjv.streamlit.app
