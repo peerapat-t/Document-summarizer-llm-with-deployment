@@ -26,7 +26,7 @@ if api_key_input:
     os.environ["OPENAI_API_KEY"] = api_key_input
     openai.api_key = os.environ['OPENAI_API_KEY']
     llm3 = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo-1106")
-    llm4 = ChatOpenAI(temperature=0, model_name="gpt-4-1106-preview")
+    llm4 = ChatOpenAI(temperature=0, model_name="gpt-4o-2024-05-13")
     st.sidebar.success(f"✅ API: **{api_key_input}**")
 else:
     st.sidebar.warning("Please enter your API key to proceed.")
@@ -34,7 +34,7 @@ else:
 # Model choice
 st.sidebar.title("Choose model")
 model_choice_input = st.sidebar.radio("*Note: GPT-4 will charge more credits.*",
-                                      ('gpt-3.5-turbo-1106', 'gpt-4-1106-preview'))
+                                      ('gpt-3.5-turbo-1106', 'gpt-4o-2024-05-13'))
 if model_choice_input:
     st.sidebar.success(f"✅ Model: **{model_choice_input}**")
 
@@ -106,30 +106,30 @@ with tab1:
             if chain_choice_input == 'map-reduce':
                 if model_choice_input == 'gpt-3.5-turbo-1106':
                     sum1 = map_reduce_paragraph(docs, llm3)
-                elif model_choice_input == 'gpt-4-1106-preview':
+                elif model_choice_input == 'gpt-4o-2024-05-13':
                     sum1 = map_reduce_paragraph(docs, llm4)
             elif chain_choice_input == 'refine':
                 if model_choice_input == 'gpt-3.5-turbo-1106':
                     sum1 = refine_paragraph(docs, llm3)
-                elif model_choice_input == 'gpt-4-1106-preview':
+                elif model_choice_input == 'gpt-4o-2024-05-13':
                     sum1 = refine_paragraph(docs, llm4)
 
         if messge_type_input == 'Bullet Points':
             if chain_choice_input == 'map-reduce':
                 if model_choice_input == 'gpt-3.5-turbo-1106':
                     sum1 = map_reduce_bullet(docs, llm3)
-                elif model_choice_input == 'gpt-4-1106-preview':
+                elif model_choice_input == 'gpt-4o-2024-05-13':
                     sum1 = map_reduce_bullet(docs, llm4)
             elif chain_choice_input == 'refine':
                 if model_choice_input == 'gpt-3.5-turbo-1106':
                     sum1 = refine_bullet(docs, llm3)
-                elif model_choice_input == 'gpt-4-1106-preview':
+                elif model_choice_input == 'gpt-4o-2024-05-13':
                     sum1 = refine_bullet(docs, llm4)                
 
         # Translate the summarize
         if (model_choice_input == 'gpt-3.5-turbo-1106'):
             sum2 = translate_to_thai(sum1, llm3)
-        elif (model_choice_input == 'gpt-4-1106-preview'):
+        elif (model_choice_input == 'gpt-4o-2024-05-13'):
             sum2 = translate_to_thai(sum1, llm4)
 
         st.success(sum1)
@@ -186,30 +186,30 @@ with tab2:
             if chain_choice_input == 'map-reduce':
                 if model_choice_input == 'gpt-3.5-turbo-1106':
                     sum1 = map_reduce_paragraph(docs, llm3)
-                elif model_choice_input == 'gpt-4-1106-preview':
+                elif model_choice_input == 'gpt-4o-2024-05-13':
                     sum1 = map_reduce_paragraph(docs, llm4)
             elif chain_choice_input == 'refine':
                 if model_choice_input == 'gpt-3.5-turbo-1106':
                     sum1 = refine_paragraph(docs, llm3)
-                elif model_choice_input == 'gpt-4-1106-preview':
+                elif model_choice_input == 'gpt-4o-2024-05-13':
                     sum1 = refine_paragraph(docs, llm4)
 
         if messge_type_input == 'Bullet Points':
             if chain_choice_input == 'map-reduce':
                 if model_choice_input == 'gpt-3.5-turbo-1106':
                     sum1 = map_reduce_bullet(docs, llm3)
-                elif model_choice_input == 'gpt-4-1106-preview':
+                elif model_choice_input == 'gpt-4o-2024-05-13':
                     sum1 = map_reduce_bullet(docs, llm4)
             elif chain_choice_input == 'refine':
                 if model_choice_input == 'gpt-3.5-turbo-1106':
                     sum1 = refine_bullet(docs, llm3)
-                elif model_choice_input == 'gpt-4-1106-preview':
+                elif model_choice_input == 'gpt-4o-2024-05-13':
                     sum1 = refine_bullet(docs, llm4)                
 
         # Translate the summarize
         if (model_choice_input == 'gpt-3.5-turbo-1106'):
             sum2 = translate_to_thai(sum1, llm3)
-        elif (model_choice_input == 'gpt-4-1106-preview'):
+        elif (model_choice_input == 'gpt-4o-2024-05-13'):
             sum2 = translate_to_thai(sum1, llm4)
 
         st.success(sum1)
@@ -265,30 +265,30 @@ with tab3:
             if chain_choice_input == 'map-reduce':
                 if model_choice_input == 'gpt-3.5-turbo-1106':
                     sum1 = map_reduce_paragraph(docs, llm3)
-                elif model_choice_input == 'gpt-4-1106-preview':
+                elif model_choice_input == 'gpt-4o-2024-05-13':
                     sum1 = map_reduce_paragraph(docs, llm4)
             elif chain_choice_input == 'refine':
                 if model_choice_input == 'gpt-3.5-turbo-1106':
                     sum1 = refine_paragraph(docs, llm3)
-                elif model_choice_input == 'gpt-4-1106-preview':
+                elif model_choice_input == 'gpt-4o-2024-05-13':
                     sum1 = refine_paragraph(docs, llm4)
 
         if messge_type_input == 'Bullet Points':
             if chain_choice_input == 'map-reduce':
                 if model_choice_input == 'gpt-3.5-turbo-1106':
                     sum1 = map_reduce_bullet(docs, llm3)
-                elif model_choice_input == 'gpt-4-1106-preview':
+                elif model_choice_input == 'gpt-4o-2024-05-13':
                     sum1 = map_reduce_bullet(docs, llm4)
             elif chain_choice_input == 'refine':
                 if model_choice_input == 'gpt-3.5-turbo-1106':
                     sum1 = refine_bullet(docs, llm3)
-                elif model_choice_input == 'gpt-4-1106-preview':
+                elif model_choice_input == 'gpt-4o-2024-05-13':
                     sum1 = refine_bullet(docs, llm4)
 
         # Translate the summarize
         if (model_choice_input == 'gpt-3.5-turbo-1106'):
             sum2 = translate_to_thai(sum1, llm3)
-        elif (model_choice_input == 'gpt-4-1106-preview'):
+        elif (model_choice_input == 'gpt-4o-2024-05-13'):
             sum2 = translate_to_thai(sum1, llm4)
 
         st.success(sum1)
@@ -335,30 +335,30 @@ with tab4:
             if chain_choice_input == 'map-reduce':
                 if model_choice_input == 'gpt-3.5-turbo-1106':
                     sum1 = map_reduce_paragraph(docs, llm3)
-                elif model_choice_input == 'gpt-4-1106-preview':
+                elif model_choice_input == 'gpt-4o-2024-05-13':
                     sum1 = map_reduce_paragraph(docs, llm4)
             elif chain_choice_input == 'refine':
                 if model_choice_input == 'gpt-3.5-turbo-1106':
                     sum1 = refine_paragraph(docs, llm3)
-                elif model_choice_input == 'gpt-4-1106-preview':
+                elif model_choice_input == 'gpt-4o-2024-05-13':
                     sum1 = refine_paragraph(docs, llm4)
 
         if messge_type_input == 'Bullet Points':
             if chain_choice_input == 'map-reduce':
                 if model_choice_input == 'gpt-3.5-turbo-1106':
                     sum1 = map_reduce_bullet(docs, llm3)
-                elif model_choice_input == 'gpt-4-1106-preview':
+                elif model_choice_input == 'gpt-4o-2024-05-13':
                     sum1 = map_reduce_bullet(docs, llm4)
             elif chain_choice_input == 'refine':
                 if model_choice_input == 'gpt-3.5-turbo-1106':
                     sum1 = refine_bullet(docs, llm3)
-                elif model_choice_input == 'gpt-4-1106-preview':
+                elif model_choice_input == 'gpt-4o-2024-05-13':
                     sum1 = refine_bullet(docs, llm4)                
 
         # Translate the summarize
         if (model_choice_input == 'gpt-3.5-turbo-1106'):
             sum2 = translate_to_thai(sum1, llm3)
-        elif (model_choice_input == 'gpt-4-1106-preview'):
+        elif (model_choice_input == 'gpt-4o-2024-05-13'):
             sum2 = translate_to_thai(sum1, llm4)
 
         st.success(sum1)
@@ -404,30 +404,30 @@ with tab5:
             if chain_choice_input == 'map-reduce':
                 if model_choice_input == 'gpt-3.5-turbo-1106':
                     sum1 = map_reduce_paragraph(docs, llm3)
-                elif model_choice_input == 'gpt-4-1106-preview':
+                elif model_choice_input == 'gpt-4o-2024-05-13':
                     sum1 = map_reduce_paragraph(docs, llm4)
             elif chain_choice_input == 'refine':
                 if model_choice_input == 'gpt-3.5-turbo-1106':
                     sum1 = refine_paragraph(docs, llm3)
-                elif model_choice_input == 'gpt-4-1106-preview':
+                elif model_choice_input == 'gpt-4o-2024-05-13':
                     sum1 = refine_paragraph(docs, llm4)        
 
         if messge_type_input == 'Bullet Points':
             if chain_choice_input == 'map-reduce':
                 if model_choice_input == 'gpt-3.5-turbo-1106':
                     sum1 = map_reduce_bullet(docs, llm3)
-                elif model_choice_input == 'gpt-4-1106-preview':
+                elif model_choice_input == 'gpt-4o-2024-05-13':
                     sum1 = map_reduce_bullet(docs, llm4)
             elif chain_choice_input == 'refine':
                 if model_choice_input == 'gpt-3.5-turbo-1106':
                     sum1 = refine_bullet(docs, llm3)
-                elif model_choice_input == 'gpt-4-1106-preview':
+                elif model_choice_input == 'gpt-4o-2024-05-13':
                     sum1 = refine_bullet(docs, llm4)
 
         # Translate the summarize
         if (model_choice_input == 'gpt-3.5-turbo-1106'):
             sum2 = translate_to_thai(sum1, llm3)
-        elif (model_choice_input == 'gpt-4-1106-preview'):
+        elif (model_choice_input == 'gpt-4o-2024-05-13'):
             sum2 = translate_to_thai(sum1, llm4)
 
         st.success(sum1)
@@ -474,30 +474,30 @@ with tab6:
             if chain_choice_input == 'map-reduce':
                 if model_choice_input == 'gpt-3.5-turbo-1106':
                     sum1 = map_reduce_paragraph(docs, llm3)
-                elif model_choice_input == 'gpt-4-1106-preview':
+                elif model_choice_input == 'gpt-4o-2024-05-13':
                     sum1 = map_reduce_paragraph(docs, llm4)
             elif chain_choice_input == 'refine':
                 if model_choice_input == 'gpt-3.5-turbo-1106':
                     sum1 = refine_paragraph(docs, llm3)
-                elif model_choice_input == 'gpt-4-1106-preview':
+                elif model_choice_input == 'gpt-4o-2024-05-13':
                     sum1 = refine_paragraph(docs, llm4)
 
         if messge_type_input == 'Bullet Points':
             if chain_choice_input == 'map-reduce':
                 if model_choice_input == 'gpt-3.5-turbo-1106':
                     sum1 = map_reduce_bullet(docs, llm3)
-                elif model_choice_input == 'gpt-4-1106-preview':
+                elif model_choice_input == 'gpt-4o-2024-05-13':
                     sum1 = map_reduce_bullet(docs, llm4)
             elif chain_choice_input == 'refine':
                 if model_choice_input == 'gpt-3.5-turbo-1106':
                     sum1 = refine_bullet(docs, llm3)
-                elif model_choice_input == 'gpt-4-1106-preview':
+                elif model_choice_input == 'gpt-4o-2024-05-13':
                     sum1 = refine_bullet(docs, llm4)
 
         # Translate the summarize
         if (model_choice_input == 'gpt-3.5-turbo-1106'):
             sum2 = translate_to_thai(sum1, llm3)
-        elif (model_choice_input == 'gpt-4-1106-preview'):
+        elif (model_choice_input == 'gpt-4o-2024-05-13'):
             sum2 = translate_to_thai(sum1, llm4)
 
         st.success(sum1)
